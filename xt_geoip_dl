@@ -1,8 +1,8 @@
 #!/bin/sh
 
 rm -f GeoIPv6.csv GeoIPv6.csv.gz GeoIPCountryCSV.zip GeoIPCountryWhois.csv;
-wget \
-        https://github.com/thytetgc/geoip/raw/master/GeoIPv6.csv.gz \
-        https://github.com/thytetgc/geoip/raw/master/GeoIPCountryCSV.zip;
+wget --no-check-certificate \
+        http://github.com/thytetgc/geoip/raw/master/GeoIPv6.csv.gz \
+        http://github.com/thytetgc/geoip/raw/master/GeoIPCountryCSV.zip;
 gzip -d GeoIPv6.csv.gz;
 unzip GeoIPCountryCSV.zip;
