@@ -1,0 +1,18 @@
+# --------------------------------------------------------------------------------
+#!/usr/bin/env bash
+
+echo 'Removendo database antiga------------------------------------------------'
+rm -rf /usr/share/xt_geoip/*
+mkdir -p /usr/share/xt_geoip
+
+echo 'Download database atualizada---------------------------------------------'
+mkdir /tmp/geoip-updater
+cd /tmp/geoip-updater
+/usr/lib/xtables-addons/xt_geoip_dl
+
+echo 'Building database GeoIP--------------------------------------------------'
+/usr/lib/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip *.csv
+sudo /usr/lib/geoip/geoip-generator -v -o /usr/share/GeoIP/GeoIP.dat GeoIPCountryWhois.csv
+sudo depmod 
+sudo depmod -a
+# --------------------------------------------------------------------------------
