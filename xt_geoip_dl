@@ -3,6 +3,7 @@
 rm -f GeoIPv6.csv GeoIPv6.csv.gz GeoIPCountryCSV.zip GeoIPCountryWhois.csv;
 wget \
         http://mirrors-cdn.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPv6.csv.gz \
+        http://mirrors-cdn.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPCountryWhois.csv \
         http://mirrors-cdn.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPCountryCSV.zip;
 gzip -d GeoIPv6.csv.gz;
 unzip GeoIPCountryCSV.zip;
