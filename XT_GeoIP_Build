@@ -1,0 +1,21 @@
+#!/bin/bash
+tmpdir="/tmp/geo"
+
+rm /usr/share/xt_geoip/ -rf
+mkdir /usr/share/xt_geoip/
+
+mkdir $tmpdir
+cd $tmpdir
+
+wget -O dbip-country-lite.csv.gz "https://download.db-ip.com/free/dbip-country-lite-$(date +'%Y-%m').csv.gz"
+
+if [ $? -ne 0 ]; then
+wget -O dbip-country-lite.csv.gz "https://download.db-ip.com/free/dbip-country-lite-$(date -d '-1 month' +'%Y-%m').csv.gz"
+fi
+
+gunzip dbip-country-lite.csv.gz
+
+/usr/lib/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip *.csv
+
+cd ~
+rm -rf $tmpdir
